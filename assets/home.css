@@ -1,0 +1,50 @@
+.top-bar{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: normal;
+}
+
+.top-button{
+    font-size: 18px;
+}
+
+
+.top-form{
+    width: 220px;
+}
+
+
+.article-table{
+    width: 100%;
+}
+
+#content{
+    resize: none;
+}
+
+#delete-article{
+    max-width: 150px;
+    max-height: 40px;
+    font-size: 15px;
+    padding: 0;
+    margin: 4px;
+}
+
+.welcome_message{
+padding-top: 18px;
+}
+
+.middle-bar{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+#fast-add-form{
+    width: 50%;
+    margin: 0 auto;
+}
+
