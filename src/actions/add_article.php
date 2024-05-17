@@ -28,6 +28,7 @@ $result = $connection->query("INSERT INTO articles (name, content, author) VALUE
 
 
 $array = array(
+    'user_id' => $user_id,
     'name' => $name,
     'content' => $content,
     'status' => $result
@@ -35,6 +36,7 @@ $array = array(
 
 $json = json_encode($array);
 
+
 echo $json;
 
-redirect('../../home.php');
+

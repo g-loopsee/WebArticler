@@ -4,7 +4,7 @@ require_once '../helpers.php';
 $articles = getAllArticles();
 
 $array = array();
-while($row = mysqli_fetch_array($articles)){
+while($row = mysqli_fetch_assoc($articles)){
     $array[] = $row;
 }
 

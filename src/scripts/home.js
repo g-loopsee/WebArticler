@@ -21,7 +21,33 @@ window.onload = function() {
                 content: form.find('#article_content').val()
             },
             success: function (data){
-                console.log(data);
+                $.ajax({
+                    url: 'src/actions/user_db.php',
+                    method: 'POST',
+                    data: {
+                        user_id: data['user_id']
+                    },
+                    success: function (user){
+                        let table = $('.article-table');
+                        table.append('<tr><td><form action="article_page.php" method="post" style="padding: 0; margin: 0">\n' +
+                            `                <input type="hidden" name="article_id" value="${data['id']}">\n` +
+                            `              <input type="hidden" name="article_name" value="${data['name']}">\n` +
+                            `                <input type="submit" value="${data['name']}" style="color:hsl(205, 20%, 32%); background-color: white; border: none; margin: 0; padding: 0">\n` +
+                            '            </form></td>' +
+                            `<td>${user}</td>` +
+                            '</tr>>');
+                    },
+                    error: function (jqXHR, exception){
+                        console.log(exception)
+                        console.log(jqXHR)
+                    }
+                })
+
+
+            },
+            error: function (jqXHR, exception){
+                console.log(exception)
+                console.log(jqXHR)
             }
         })
     })
@@ -35,7 +61,7 @@ window.onload = function() {
 
         $.ajax({
             url: 'src/actions/delete_article.php',
-            method: 'post',
+            method: 'POST',
             dataType: 'json',
             data: {
                 article_id: article_id,
@@ -55,16 +81,25 @@ window.onload = function() {
     //     '                <input type="submit" value="<?=$row[\'name\']?>" style="color:hsl(205, 20%, 32%); background-color: white; border: none; margin: 0; padding: 0">\n' +
     //     '            </form></td>>')
 
-    showArticles();
 }
 
-function showArticles(){
-    $.ajax({
-        url: "src/actions/articles_render.php",
-        method: 'GET',
-        dataType: 'json',
-        success: function (data){
-            console.log(data);
-        }
-    })
-}
+// function showArticles(){
+//     let table = $('.article-table');
+//     $.ajax({
+//         url: "src/actions/articles_render.php",
+//         method: 'GET',
+//         dataType: 'json',
+//         success: function (data){
+//             console.log(data);
+//             for(let i = 0; i < data.length; i++){
+//                 table.append('<tr><td><form action="article_page.php" method="post" style="padding: 0; margin: 0">\n' +
+//                     `                <input type="hidden" name="article_id" value="${data[i]['id']}">\n` +
+//                     `              <input type="hidden" name="article_name" value="${data[i]['name']}">\n` +
+//                     `                <input type="submit" value="${data[i]['name']}" style="color:hsl(205, 20%, 32%); background-color: white; border: none; margin: 0; padding: 0">\n` +
+//                     '            </form></td>' +
+//                     `<td></td>` +
+//                     '</tr>>');
+//             }
+//         }
+//     })
+// }
